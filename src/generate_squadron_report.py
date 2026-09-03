@@ -195,15 +195,11 @@ def generate_squadron_report(squadron_code, output_file):
 if __name__ == "__main__":
     print("Generating squadron activity reports...")
 
-    squadron_codes = [
-        "VFA-41",
-        "VFA-25",
-        "VFA-154",
-        "VFA-113",
-        "VFA-14",
-        "VFA-192",
-        "VFA-2",
-    ]
+    pilots = rf.read_csv_file("data/pilots.csv")
+    squadron_codes = rf.get_unique_values(
+        pilots,
+        "squadron",
+    )
 
     for squadron_code in squadron_codes:
         output_file = (
@@ -213,4 +209,5 @@ if __name__ == "__main__":
             squadron_code,
             output_file,
         )
+
     print(f"Generated {len(squadron_codes)} reports.")
